@@ -45,6 +45,7 @@ class UsersDao {
         ];
         for (let field of allowedPatchFields) {
             if (field in user) {
+                // @ts-ignore
                 currentUser[field] = user[field];
             }
         }
