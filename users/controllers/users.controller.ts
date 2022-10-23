@@ -1,12 +1,12 @@
 // express adds types to the request/response obj
 // from controller functions
-import express from 'express';
+import express = require('express');
 
 // The newly created user services
 import usersService from '../services/users.service';
 
 // argon2 lib fro pasword hashing
-import argon2 from 'argon2';
+import argon2 = require('argon2');
 
 // use debug with a custom context
 import debug from 'debug';

@@ -1,4 +1,5 @@
-import * as express from 'express';
+import express = require('express');
+
 export abstract class CommonRoutesConfig {
     app: express.Application;
     name: string;
