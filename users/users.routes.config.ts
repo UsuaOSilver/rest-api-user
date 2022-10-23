@@ -18,7 +18,7 @@ export class UsersRoutes extends CommonRoutesConfig {
                 UsersController.createUser
             );
             
-        this.app.param(`userId`, UsersMiddleware.extractUserId);
+        this.app.param(`userId`, UsersMiddleware.extractUserId); // .param() function from Express.js to extract userId
         this.app.route(`/users/:userId`)
                 .all(UsersMiddleware.validateUserExists)
                 .get(UsersController.getUserById)
