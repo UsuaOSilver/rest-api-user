@@ -1,5 +1,5 @@
 import express from 'express';
-import * http from 'heep';
+import * as http from 'http';
 
 import * as winston from 'winston';
 import * as expressWinston from 'express-winston';
