@@ -1,9 +1,12 @@
+// Middleware validate prerec for controllers
+
 import express from 'express';
 import userService from '../services/users.service';
 import debug from 'debug';
 
 const log: debug.IDebugger = debug('app:users-controllers');
 class UsersMiddleware {
+    
     async validateRequiredUserBodyFields(
         req: express.Request,
         res: express.Response,
@@ -17,6 +20,7 @@ class UsersMiddleware {
             });
         }
     }
+    
     async validateSameEmailDoesntExist(
         req: express.Request,
         res: express.Response,
@@ -29,6 +33,7 @@ class UsersMiddleware {
             next();
         }
     }
+    
     async validateSameEmailBelongToSameUser(
         req: express.Request,
         res: express.Response,
@@ -41,6 +46,7 @@ class UsersMiddleware {
             res.status(400).send({ error: `Invalid email` });
         }
     }
+    
     // User arrow function to bind 'this' correctly
     validatePatchEmail = async (
         req: express.Request,
@@ -55,6 +61,7 @@ class UsersMiddleware {
             next();
         }
     };
+    
     async validateUserExists(
         req: express.Request,
         res: express.Response,
@@ -68,6 +75,16 @@ class UsersMiddleware {
                 error: `User ${req.params.userId} not found`,
             });
         }
+    }
+    
+    // Helper func extracting userId fr request param
+    async extractUserId(
+        req: express.Request,
+        res: express.Response,
+        next: express.NextFunction
+    ) {
+        req.body.id = req.params.userId;
+        next();
     }
 }
 
